@@ -1,0 +1,56 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Git Rebase
+scopeName: source.git-rebase
+fileTypes: [git-rebase-todo, git-rebase]
+uuid: 89f61c99-f7ae-4cd1-b5f1-92a1afb50242
+
+patterns:
+  - name: comment.line.number-sign
+    match: "^#.*$"
+  # Exec calls
+  - name: meta.exec.rebase.git-rebase
+    begin: "^(x|exec)"
+    beginCaptures:
+      "1":
+        name: constant.language.rebase.exec.git-rebase
+    patterns:
+    - include: 'source.shell'
+    end: "\n|$"
+
+  - name: constant.language.rebase.pick.git-rebase
+    match: "^p(?:ick)? ([0-9a-f]+) ?(.*)"
+    captures:
+      "1":
+        name: variable.parameter.commit-hash.rebase.git-rebase
+      "2":
+        name: string.unquoted.commit-message.rebase.git-rebase
+  - name: constant.language.rebase.edit.git-rebase
+    match: "^e(?:dit)? ([0-9a-f]+) ?(.*)"
+    captures:
+      "1":
+        name: variable.parameter.commit-hash.rebase.git-rebase
+      "2":
+        name: string.unquoted.commit-message.rebase.git-rebase
+  - name: constant.language.rebase.fixup.git-rebase
+    match: "^f(?:ixup)? ([0-9a-f]+) ?(.*)"
+    captures:
+      "1":
+        name: variable.parameter.commit-hash.rebase.git-rebase
+      "2":
+        name: string.unquoted.commit-message.rebase.git-rebase
+  - name: constant.language.rebase.reword.git-rebase
+    match: "^r(?:eword)? ([0-9a-f]+) ?(.*)"
+    captures:
+      "1":
+        name: variable.parameter.commit-hash.rebase.git-rebase
+      "2":
+        name: string.unquoted.commit-message.rebase.git-rebase
+  - name: constant.language.rebase.squash.git-rebase
+    match: "^s(?:quash)? ([0-9a-f]+) ?(.*)"
+    captures:
+      "1":
+        name: variable.parameter.commit-hash.rebase.git-rebase
+      "2":
+        name: string.unquoted.commit-message.rebase.git-rebase
+...

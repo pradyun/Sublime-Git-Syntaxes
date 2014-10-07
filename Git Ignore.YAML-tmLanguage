@@ -1,0 +1,43 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Git Ignore
+scopeName: source.git-ignore
+fileTypes: [gitignore]
+uuid: 87d6bed6-feb4-46e2-b4c4-db583abc039e
+
+patterns:
+
+  - name: comment.line.number-sign
+    match: "^#.*"
+
+  - name: meta.pattern.exclude.git-ignore
+    begin: "^(!)"
+    beginCaptures:
+      "1":
+        name: keyword.operator.exclude.git-ignore
+    patterns:
+      - include: '#wildcards'
+      - include: '#escapes'
+    end: "$"
+
+  - include: '#wildcards'
+  - include: '#escapes'
+repository:
+  # Wildcards
+  wildcards:
+    patterns:
+      - name: invalid.asterisk.multiple.git-ignore
+        match: "[*]{3,}"
+      - name: keyword.operator.asterisk.double.git-ignore
+        match: "[*][*]"
+      - name: keyword.operator.asterisk.single.git-ignore
+        match: "[*]"
+  escapes:
+    patterns:
+      - name: constant.character.escape
+        patterns:
+        - match: "\\[ ]"
+        - match: "\\#"
+        - match: "\\!"
+        - match: "\\!"
+...
